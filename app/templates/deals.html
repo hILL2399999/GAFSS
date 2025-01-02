@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <h1 class="title">Список сделок</h1>
+        <p class="subtitle">Фильтрация и управление сделками</p>
+
+        <!-- Форма фильтрации -->
+        <form method="get" action="/deals/">
+            <div class="columns is-multiline">
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="id" placeholder="ID сделки">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="client_order_id" placeholder="ID клиента">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="number" name="amount" step="0.01" placeholder="Сумма">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="status" placeholder="Статус">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="customer_name" placeholder="Имя клиента">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="order_side" placeholder="Тип заказа">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="payment_method" placeholder="Метод оплаты">
+                </div>
+                <div class="column is-one-quarter">
+                    <input class="input" type="text" name="created_at" placeholder="Дата создания">
+                </div>
+                <div class="column is-one-quarter">
+                    <button class="button is-primary" type="submit">Применить фильтр</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Таблица сделок -->
+        <table class="table is-fullwidth is-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя клиента</th>
+                    <th>Сумма</th>
+                    <th>Тип заказа</th>
+                    <th>Метод оплаты</th>
+                    <th>Дата создания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deal in deals %}
+                <tr>
+                    <td>{{ deal.id }}</td>
+                    <td>{{ deal.customer_name }}</td>
+                    <td>{{ deal.amount }}</td>
+                    <td>{{ deal.order_side }}</td>
+                    <td>{{ deal.payment_method }}</td>
+                    <td>{{ deal.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

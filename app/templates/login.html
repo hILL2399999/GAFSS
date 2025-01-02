@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">GAS</h1>
+        <p class="subtitle has-text-centered">Вход в платежный агрегатор</p>
+        <form action="/auth/login" method="post" class="box">
+            <div class="field">
+                <label class="label">Login</label>
+                <div class="control">
+                    <input class="input" type="text" name="username" placeholder="Введите логин" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" placeholder="Введите пароль" required>
+                </div>
+            </div>
+            <div class="control">
+                <button class="button is-primary is-fullwidth">Войти</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
